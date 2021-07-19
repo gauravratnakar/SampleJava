@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+  database: "postgres"
+  {{- range $key, $val := .Values.database }}
+  {{ $key }}: {{ $val | quote }}
+  {{- end }}
